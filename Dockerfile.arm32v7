@@ -1,0 +1,17 @@
+FROM balenalib/raspberry-pi2-ubuntu
+
+RUN [ "cross-build-start" ]
+
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y \
+    #--- Development files -----
+    build-essential \
+    checkinstall \
+    ruby \
+    cmake
+
+ADD . /repo
+WORKDIR /repo
+
+CMD make
